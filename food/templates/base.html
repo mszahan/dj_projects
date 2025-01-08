@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>
+        food app 
+        
+        {% block title %}
+            
+        {% endblock title %}
+            
+    </title>
+</head>
+<body>
+
+    <nav class="nav-bar">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Add food</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Register</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        {% block main %}
+            
+        {% endblock main %}
+            
+    </div>
+    
+</body>
+</html>
