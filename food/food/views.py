@@ -23,6 +23,18 @@ def create_product(request):
     return render(request, 'product_form.html', {'form':form})
 
 
+def update_product(request, id):
+    product = get_object_or_404(Product,id=id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('food_list')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'product_form.html', {'form':form, 'product':product})
+
+
 # def create_product(request):
 #     form = ProductForm(request.POST or None)
 
