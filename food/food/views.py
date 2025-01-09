@@ -35,6 +35,14 @@ def update_product(request, id):
     return render(request, 'product_form.html', {'form':form, 'product':product})
 
 
+def delete_product(request, id):
+    product = get_object_or_404(Product, id=id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('food_list')
+    return render(request, 'product_delete.html', {'product':product})
+
+
 # def create_product(request):
 #     form = ProductForm(request.POST or None)
 
