@@ -2,18 +2,20 @@
 
 
 {% block main %}
-
-{% for product in products %}
-    <div class="product-container">
-        <div class="image-container">
-            {% if product.image %}
-            <img src="{{product.image.url}}" alt="{{product.name}}" class="product-image">
-            {% endif %}      
+<div class="food-list">
+    {% for product in products %}
+        <div class="product-container">
+            <div class="image-container">
+                {% if product.image %}
+                <img src="{{product.image.url}}" alt="{{product.name}}" class="product-image">
+                {% endif %}      
+            </div>
+            <h1 class="product-name">{{product.name}}</h1>
+            <a href="{{product.get_absolute_url}}">Details</a>
         </div>
-        <h1 class="product-name">{{product.name}}</h1>
-        <a href="{{product.get_absolute_url}}">Details</a>
-    </div>
-{% endfor %}
+    {% endfor %}
+
+</div>
     
 {% endblock main %}
     
