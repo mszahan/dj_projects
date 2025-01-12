@@ -15,5 +15,5 @@ def register(request):
             return redirect('food_list')
     else:
         form = RegisterForm()
-    return render(request, 'register.html', {'form':form})
+    return render(request, 'registration/register.html', {'form':form})
 
