@@ -25,6 +25,10 @@
                 <a href="{% url 'create_product' %}" class="nav-link">Add food</a>
             </li>
             {% if user.is_authenticated %}
+            
+            <li class="nav-item">
+                <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+            </li>
                 <li class="nav-item">
                     <!-- <a href="{% url 'logout' %}" class="nav-link">Logout</a> -->
                      <form action="{% url 'logout' %}" method="post">
@@ -32,6 +36,7 @@
                         <button type="submit">logout</button>
                      </form>
                 </li>
+                
             {% else %}
                 <li class="nav-item">
                     <a href="{% url 'login' %}" class="nav-link">Login</a>
