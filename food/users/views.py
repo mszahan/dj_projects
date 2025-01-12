@@ -12,7 +12,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Welcome {username} your account is created')
-            return redirect('food_list')
+            return redirect('login')
     else:
         form = RegisterForm()
     return render(request, 'registration/register.html', {'form':form})
