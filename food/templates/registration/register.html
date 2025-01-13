@@ -4,7 +4,16 @@
 {% block main %}
     <form method="post">
         {% csrf_token %}
-        {{form}}
+        <!-- {{form}} -->
+         
+         {% for field in form %}
+            <div class="register-fields">
+                {{field.name}}
+                <br>
+                {{field}}
+            </div>
+         {% endfor %}
+            
         <button type="submit">Register</button>
     </form>
 {% endblock main %}

@@ -9,7 +9,16 @@
 {% block main %}
     <form method="post">
         {% csrf_token %}
-        {{form}}
+        <!-- {{form}} -->
+         
+         {% for field in form %}
+            <div class="form-group">
+                {{field.name}}
+                <br>
+                {{field}}
+            </div>
+         {% endfor %}
+            
         <button type="submit">Login</button>
     </form>
 {% endblock main %}
