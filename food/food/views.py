@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseForbidden
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
@@ -48,9 +50,11 @@ class CreateProductView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-
+@login_required
 def update_product(request, id):
     product = get_object_or_404(Product,id=id)
+    if product.user != request.user:
+        return HttpResponseForbidden('You are not allowed to update this product')
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
@@ -61,9 +65,11 @@ def update_product(request, id):
         form = ProductForm(instance=product)
     return render(request, 'product_form.html', {'form':form, 'product':product})
 
-
+@login_required
 def delete_product(request, id):
     product = get_object_or_404(Product, id=id)
+    if product.user != request.user:
+        return HttpResponseForbidden('You are not allowed to delete this product')
     if request.method == 'POST':
         product.delete()
         return redirect('food_list')

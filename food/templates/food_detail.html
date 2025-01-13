@@ -19,8 +19,12 @@
                 <p class="details">
                     {{product.description}}
                 </p>
+                
+                {% if product.user == request.user %}
                 <a href="{% url 'update_product' product.id %}" class="delete-product">Edit</a>
-                <a href="{% url 'delete_product' product.id %}" class="delete-product">Delete</a>
+                <a href="{% url 'delete_product' product.id %}" class="delete-product">Delete</a>  
+                {% endif %}
+                    
             </div>
                 
         </div>
