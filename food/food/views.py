@@ -1,11 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic.list import ListView
 from .models import Product
 from .forms import ProductForm
 
 
-def index (request):
-    products = Product.objects.all()
-    return render(request, 'food_list.html', {'products': products})
+# def index (request):
+#     products = Product.objects.all()
+#     return render(request, 'food_list.html', {'products': products})
+
+class FoodListView(ListView):
+    model = Product
+    template_name = 'food_list.html'
+    context_object_name = 'products'
 
 
 def product_detail(request, id):
