@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from .models import Product
 from .forms import ProductForm
 
@@ -14,9 +15,16 @@ class FoodListView(ListView):
     context_object_name = 'products'
 
 
-def product_detail(request, id):
-    product = get_object_or_404(Product, id=id)
-    return render(request, 'food_detail.html', {'product':product})
+# def product_detail(request, id):
+#     product = get_object_or_404(Product, id=id)
+#     return render(request, 'food_detail.html', {'product':product})
+
+
+class FoodDetailView(DetailView):
+    model = Product
+    template_name = 'food_detail.html'
+    context_object_name = 'product' # default name will be object
+
 
 def create_product(request):
     if request.method == 'POST':
