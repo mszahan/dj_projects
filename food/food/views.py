@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
@@ -38,7 +39,7 @@ class FoodDetailView(DetailView):
 #         form = ProductForm()
 #     return render(request, 'product_form.html', {'form':form})
 
-class CreateProductView(CreateView):
+class CreateProductView(LoginRequiredMixin, CreateView):
     model = Product
     fields = ['name', 'description', 'price', 'image']
     template_name = 'product_form.html'
