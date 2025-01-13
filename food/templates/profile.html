@@ -10,5 +10,23 @@
 {% block main %}
     <h1>{{user.username}}</h1>
     <img src="{{user.profile.image.url}}" alt="{{profile.username}}">
+
+    <div class="user-product-list">
+        <h1>products added by {{user.username}}</h1>
+        <hr>
+        <ul>
+            {% with user.products.all as products %}
+                
+                {% for product in products %}
+                    <li>
+                        <a href="{{product.get_absolute_url}}">{{product.name}}</a>
+                    </li>
+                {% endfor %}
+                    
+            {% endwith %}
+
+        </ul>
+            
+    </div>
 {% endblock main %}
     
