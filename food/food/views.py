@@ -30,8 +30,9 @@ def create_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('food_list')
+            # form.save()
+            product = form.save()
+            return redirect(product.get_absolute_url())
     else:
         form = ProductForm()
     return render(request, 'product_form.html', {'form':form})
@@ -43,7 +44,8 @@ def update_product(request, id):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('food_list')
+            # return redirect('food_list')
+            return redirect(product.get_absolute_url())
     else:
         form = ProductForm(instance=product)
     return render(request, 'product_form.html', {'form':form, 'product':product})
