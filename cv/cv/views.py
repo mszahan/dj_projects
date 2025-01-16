@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from .models import Profile
 from weasyprint import HTML
@@ -19,6 +19,7 @@ def accept(request):
         profile = Profile(name=name, email=email, phone=phone, summary=summary, degree=degree, school=school,
                           University=University, previous_work=previous_work, skills=skills )
         profile.save()
+        return redirect('cv_list')
         
     return render(request, 'accept.html')
 
@@ -33,3 +34,7 @@ def cv(request, id):
     response = HttpResponse(pdf_file, content_type='application/pdf')
     response['Content-Disposition'] = f'inline; filename={user_profile.name}_cv.pdf'
     return response
+
+def cv_list(request):
+    profiles = Profile.objects.all()
+    return render(request, 'cv_list.html', {'users':profiles})
