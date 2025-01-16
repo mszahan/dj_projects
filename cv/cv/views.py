@@ -1,5 +1,8 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from .models import Profile
+from weasyprint import HTML
 
 def accept(request):
     if request.method == 'POST':
@@ -18,3 +21,15 @@ def accept(request):
         profile.save()
         
     return render(request, 'accept.html')
+
+
+def cv(request, id):
+    user_profile = Profile.objects.get(pk=id)
+    #render the html content using the template
+    html_content = render_to_string('cv.html', {'user':user_profile})
+
+    #generate the pdf from the html content
+    pdf_file = HTML(string=html_content, base_url=request.build_absolute_uri()).write_pdf()
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = f'inline; filename={user_profile.name}_cv.pdf'
+    return response
