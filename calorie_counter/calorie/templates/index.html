@@ -3,18 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Food list</title>
 </head>
 <body>
-    <div class="food-list">
-        <form action="">
+    <div class="container mt-3">
+        <form method="post">
             {% csrf_token %}
-            <select name="" id="">
+            <select name="food_consumed" id="food_consumed">
                 {% for food in foods %}
-                <option value="{{food.name}}">{{food.name}}</option> 
+                <option value="{{food.id}}">{{food.name}}</option> 
                 {% endfor %}    
             </select>
+            <button type="submit">Add</button>
         </form>
+
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div>
+                    <h4 class="mt-5">consumed food list</h4>
+                </div>
+                <table id="table", class="table table-striped">
+                    <tr>
+                        <th>Food consumed</th>
+                        <th>Carbohydrate (gm) </th>
+                        <th>Protien (gm)</th>
+                        <th>Fat (gm)</th>
+                        <th>Calories (Kcal)</th>
+                    </tr>
+                    {% for consume in consume_foods %}
+                    <tr>
+                        <td>{{consume.food.name}}</td>
+                        <td>{{consume.food.carbs}}</td>
+                        <td>{{consume.food.protien}}</td>
+                        <td>{{consume.food.fats}}</td>
+                        <td>{{consume.food.calories}}</td>
+                        
+                    </tr>
+                    {% endfor %} 
+                </table>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </div>
 </body>
 </html>
