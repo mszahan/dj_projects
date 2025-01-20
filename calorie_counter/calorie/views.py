@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Food, Consume
 
-
+@login_required
 def index(request):
     if request.method == 'POST':
         food_id = request.POST['food_consumed']
