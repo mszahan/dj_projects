@@ -37,6 +37,7 @@
                         <th>Protien (gm)</th>
                         <th>Fat (gm)</th>
                         <th>Calories (Kcal)</th>
+                        <th>Remove food</th>
                     </tr>
                     {% for consume in consume_foods %}
                     <tr>
@@ -45,6 +46,7 @@
                         <td>{{consume.food.protien}}</td>
                         <td>{{consume.food.fats}}</td>
                         <td>{{consume.food.calories}}</td>
+                        <td><a href="{% url 'delete_consume' consume.id %}" class="btn btn-light">Remove</a></td>
                         
                     </tr>
                     {% endfor %} 
