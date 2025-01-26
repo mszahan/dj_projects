@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Registration complete
+{% endblock title %}
+
+
+
+{% block main %}
+    <h1>You have successfully registered</h1>
+    <p>
+        you can log in here
+        <a href="{% url 'login' %}">login</a>
+    </p>
+{% endblock main %}
+    
