@@ -16,23 +16,61 @@
     </title>
 </head>
 <body>
+    {% include 'nav.html' %}
     
-    {% if user.is_authenticated %}
+    <!-- {% if user.is_authenticated %}
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
     {% else %}
         <a href="{% url 'login' %}">login</a>
-    {% endif %}
+    {% endif %} -->
+        
+    <div class="main mx-5">
+        {% block main %}
+            
+        {% endblock main %}
+
+    </div>
         
     
-    {% block main %}
-        
-    {% endblock main %}
-        
-    
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          // Handle the mobile menu toggle
+          const menuButton = document.querySelector('[aria-controls="mobile-menu"]');
+          const mobileMenu = document.getElementById("mobile-menu");
+      
+          if (menuButton && mobileMenu) {
+            menuButton.addEventListener("click", () => {
+              const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+              menuButton.setAttribute("aria-expanded", !isExpanded);
+              mobileMenu.classList.toggle("hidden");
+            });
+          }
+      
+          // Handle the profile dropdown toggle
+          const profileButton = document.getElementById("user-menu-button");
+          const profileMenu = profileButton?.nextElementSibling;
+      
+          if (profileButton && profileMenu) {
+            profileButton.addEventListener("click", () => {
+              profileMenu.classList.toggle("hidden");
+            });
+      
+            // Close the dropdown when clicking outside
+            document.addEventListener("click", (event) => {
+              if (
+                !profileButton.contains(event.target) &&
+                !profileMenu.contains(event.target)
+              ) {
+                profileMenu.classList.add("hidden");
+              }
+            });
+          }
+        });
+      </script>
+      
     {% block bottom %}
         
     {% endblock bottom %}

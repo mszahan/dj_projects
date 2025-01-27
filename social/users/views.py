@@ -16,9 +16,9 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponse('Login successfull')
+                return redirect('homepage')
             else:
-                return HttpResponse('Invalid credentials')
+                return redirect('login')
             
     form = LoginForm()
     return render(request, 'login.html', {'form':form} )
