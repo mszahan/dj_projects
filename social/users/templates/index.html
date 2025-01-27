@@ -5,4 +5,15 @@
 {% block main %}
     <h1>Home</h1>
     <p>Welcome to the home page</p>
+    
+    {% for post in posts %}
+        <h1>{{post.title}}</h1>
+        <h2>{{post.user.username}}</h2>
+        
+        {% if post.image %}
+            <img src="{{post.image.url}}" alt="{{post.title}}"> 
+        {% endif %}
+            
+    {% endfor %}
+        
 {% endblock main %}
