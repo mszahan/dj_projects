@@ -7,19 +7,40 @@
 
 
 {% block main %}
-<h3>Register here</h3>
-    <form method="post">
+<h1 class="text-2xl m-10 mx-auto text-center">Register here</h1>
+<div class="container py-5 ">
+    <form method="post" class="bg-white shadow-md m-10 w-2/5 rounded px-8 pt-6 pb-8 mb-4 mx-auto">
         {% csrf_token %}
-        {{ user_form.as_p }}
-        <button type="submit">Register</button>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold m-2" for="">Username</label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10">{{user_form.username}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold m-2" for="">First name</label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10">{{user_form.first_name}}</div>
+        </div>       
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold m-2" for="">Email</label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10">{{user_form.email}}</div>
+        </div>       
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold m-2" for="">Password</label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10">{{user_form.password}}</div>
+        </div>       
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold m-2" for="">Confirm password</label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10">{{user_form.password2}}</div>
+        </div>       
+        <button type="submit" class="text-white bg-green-600 px-5 py-2 rounded cursor-pointer">Register</button>
     </form>
-    <p>
-        already have an account?
-        <a href="{% url 'login' %}">login</a>
-    </p>
-    <p>
-        <a href="{% url 'password_reset' %}">forgot password</a>
-    </p>
+
+</div>
+<div class="m-10 w-2/5 rounded px-2 mx-auto">
+    <p>  already have an account? <a href="{% url 'login' %}" class="underline text-indigo-700">Login</a></p>
+    <p> <a href="{% url 'password_reset' %}" class="underline text-indigo-700">Forgot password?</a> </p>
+
+</div>
+
 
 {% endblock main %}
     

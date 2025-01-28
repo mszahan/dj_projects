@@ -24,7 +24,7 @@ def user_login(request):
     return render(request, 'login.html', {'form':form} )
 
 @login_required
-def homepage(request):
+def user_post(request):
     current_user = request.user
     posts = Post.objects.filter(user=current_user)
     return render(request, 'index.html', {'posts': posts})

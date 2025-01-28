@@ -1,14 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}User posts{% endblock title %}
 
 {% block main %}
-    <h1>Home</h1>
-    <p>Welcome to the home page</p>
+<div class="flex justify-center mt-5 p-5">
+    <h1 class="text-2xl">My posts</h1>
+    <img src="{% static 'img/like.png' %}" alt="">
+</div>
+
+<div class="grid grid-cols-1">
+    {% for post in posts %}
+    <a href="#">
+        <div class="rounded overflow-hidden w-[470px] h-[470px] bg-white shadow-lg mx-auto mb-5">
+            <div class="user-container flex mx-5 my-5">
+            
+                {% if user.profile.photo %}
+                    <img class="h-10 w-10 rounded-full" src="{{user.profile.photo.url}}" alt="" srcset="">
+                {% endif %}
+                <div class="mx-2 my-2 font-bold"> <span class="text-indigo-700">{{post.user.username}} </span> </div>
+                    
+            </div>
+        {% if post.image %}
+            <div>
+                <img src="{{post.image.url}}" alt="{{post.title}}"> 
+
+            </div>
+        {% endif %}
+        </div>
+
+        <div>
+            <div class="icon-container">
+                <img src="{% static 'img/like.png' %}" alt="">
+            </div>
+        </div>
+        
+    </a>
+        
+        
+            
+    {% endfor %}
+</div>
     
     {% for post in posts %}
         <h1>{{post.title}}</h1>
-        <h2>{{post.user.username}}</h2>
         
         {% if post.image %}
             <img src="{{post.image.url}}" alt="{{post.title}}"> 
