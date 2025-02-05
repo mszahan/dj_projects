@@ -84,7 +84,12 @@
         </div>
             
         {% endfor %}
-            
+
+        <div class="px-72 py-5">
+            <span class="font-bold">
+               Total:  ${{ total_expenses.amount__sum}}
+            </span>
+        </div>
     </div>
 
 {% endblock main %}

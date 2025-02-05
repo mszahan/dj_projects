@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
+from django.db.models import Sum
 from .forms import ExpenseForm
 from .models import Expense
 
@@ -10,8 +11,11 @@ def index(request):
             expense_form.save()
             return redirect('homepage')
     expenses = Expense.objects.all()
+    total_expenses = expenses.aggregate(Sum('amount'))
     expense_form = ExpenseForm()
-    return render(request,'index.html', {'expense_form':expense_form, 'expenses':expenses})
+    return render(request,'index.html', {'expense_form':expense_form, 
+                                         'expenses':expenses, 
+                                         'total_expenses':total_expenses})
 
 
 def edit(request, id):
