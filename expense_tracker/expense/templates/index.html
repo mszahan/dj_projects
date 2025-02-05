@@ -13,7 +13,7 @@
     </h1>
 
     <form method="post" class="shadow-lg m-10 rounded-lg">
-        <div class="form-container px-10 py-10 flex gap-10 justify-center">
+        <div class="form-container px-10 py-10 flex gap-10 justify-center flex-wrap">
             <div>
                 <div class="mb-3">
                     <label>Expense Name</label>
@@ -48,8 +48,39 @@
     <h1 class="text-3xl text-center mt-5">
         All Expenses
     </h1>
-    <div>
 
+    <div class="shadow-lg m-10 rounded-lg py-5">
+        <div class="expense-header flex flex-wrap space-x-40">
+            <span class="font-bold">Name</span>
+            <span class="font-bold">Amount (USD) </span>
+            <span class="font-bold">Category</span>
+            <span class="font-bold">Date</span>
+            <span class="font-bold">Edit</span>
+            <span class="font-bold">Delete</span>
+        </div>
+        <hr class="m-5">
+        
+        {% for expense in expenses %}
+        <div class="expense-row my-3">
+            <span class="font-bold">
+                {{expense.name}}
+            </span>
+            <span>
+                {{expense.amount}}
+            </span>
+            <span>
+                {{expense.date}}
+            </span>
+            <span>
+                {{expense.category}}
+            </span>
+            <span><a href="#">Edit</a></span>
+            <span> <a href="#">Delete</a></span>
+        </div>
+            
+        {% endfor %}
+            
     </div>
+
 {% endblock main %}
     
