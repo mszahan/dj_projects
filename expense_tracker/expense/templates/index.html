@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 
 {% block title %}
@@ -66,7 +67,7 @@
                 {{expense.name}}
             </span>
             <span>
-                {{expense.amount}}
+                {{expense.amount|intcomma}}
             </span>
             <span>
                 {{expense.date}}
@@ -87,7 +88,7 @@
 
         <div class="px-72 py-5">
             <span class="font-bold">
-               Total:  ${{ total_expenses.amount__sum}}
+               Total:  ${{ total_expenses.amount__sum|intcomma}}
             </span>
         </div>
     </div>
