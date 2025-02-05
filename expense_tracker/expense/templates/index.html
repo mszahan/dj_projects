@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Homepage
+{% endblock title %}
+    
+
+
+{% block main %}
+    <h1 class="text-3xl text-center">
+        Add your expense
+    </h1>
+
+    <form method="post" class="shadow-lg m-10 rounded-lg">
+        <div class="form-container px-10 py-10 flex gap-10 justify-center">
+            <div>
+                <div class="mb-3">
+                    <label>Expense Name</label>
+                </div>
+                <div class="border">
+                    {{expense_form.name}}
+                </div>
+            </div>
+            <div>
+                <div class="mb-3">
+                    <label>Amount</label>
+                </div>
+                <div class="border">
+                    {{expense_form.amount}}
+                </div>
+            </div>
+            <div>
+                <div class="mb-3">
+                    <label>Category</label>
+                </div>
+                <div class="border">
+                    {{expense_form.category}}
+                </div>
+            </div>
+            <div class="mt-7">
+                <button type="submit" class="bg-green-700 px-5 py-2 rounded-lg text-white">Add</button>
+            </div>
+        </div>
+        {% csrf_token %}
+    </form>
+
+    <h1 class="text-3xl text-center mt-5">
+        All Expenses
+    </h1>
+    <div>
+
+    </div>
+{% endblock main %}
+    
