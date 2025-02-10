@@ -73,6 +73,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #for channels
 ASGI_APPLICATION = 'config.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default':{
+        'BACKEND':'channels.layersInMemoryChannelLayer'
+    }
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
