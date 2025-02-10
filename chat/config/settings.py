@@ -73,9 +73,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #for channels
 ASGI_APPLICATION = 'config.asgi.application'
 
-CHANNEL_LAYERS = {
+CHANNEL_LAYERS ={
     'default':{
-        'BACKEND':'channels.layersInMemoryChannelLayer'
+        'BACKEND':'channels.layers.InMemoryChannelLayer'
     }
 }
 
