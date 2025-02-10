@@ -9,7 +9,11 @@
     {{chatroom.name}}
 
     <div id="chat-messages">
-
+        
+        {% for message in messages %}
+            {{message.user.username}} : {{message.message_content}} <br>
+        {% endfor %}
+            
     </div>
 
     <form method="post">
@@ -36,7 +40,7 @@
             const data = JSON.parse(e.data)
             if (data.message) {
                 console.log('Recieved message', data.message)
-                let html = data.username + ':' + data.message +'<br>'
+                let html = data.username + ' : ' + data.message +'<br>'
                 document.getElementById('chat-messages').innerHTML += html
 
             } else {
