@@ -12,7 +12,7 @@
     {% for chatroom in chatrooms %}
     <ul>
         <li>
-            <a href="#">
+            <a href="{{chatroom.get_absolute_url}}">
                 {{chatroom.name}}
             </a>
         </li>
