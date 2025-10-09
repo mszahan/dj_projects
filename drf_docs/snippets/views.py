@@ -29,7 +29,7 @@ from .permissions import IsOwnerOrReadOnly
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.prefetch_related('snippets').all()
     serializer_class = UserSerializer
 
 # class UserList(generics.ListAPIView):
@@ -43,7 +43,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class SnippetViewSet(viewsets.ModelViewSet):
-    queryset = Snippet.objects.all()
+    queryset = Snippet.objects.select_related('owner').all()
     serializer_class = SnippetSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
