@@ -4,8 +4,8 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('snippets.urls')),
     path('', include('blog.urls')),
+    path('', include('snippets.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ]
 urlpatterns += debug_toolbar_urls()
